@@ -1,0 +1,27 @@
+#the mod name as displayed in-game
+displayName: "Mekanized"
+
+#the internal name of your mod
+name: "mekanized-java"
+
+#your name
+author: "Null"
+
+#the fully qualified main class of the mod
+main: "mekanized.MekanizedJava"
+
+#the mod description as seen in the mod dialog
+description:
+'''
+A new industrial world. Hopefully a cure for my lazy passion.
+Now in Java because HJSON isn't that versatile.
+'''
+
+#the mod version
+version: 0.0.1
+
+#the minimum game build required to run this mod
+minGameVersion: 160.7
+
+#this is a java mod
+java: true
