@@ -53,7 +53,7 @@ public class MekBlocks{
             consume(new ConsumeItemFlammable());
             consumeLiquid(Liquids.water, 1f).boost();
 
-            outputLiquid = new LiquidStack(Liquids.nitrogen, 1f);
+            outputLiquid = new LiquidStack(MekLiquids.steam, 1f);
 
             updateEffect = Fx.fuelburn;
             updateEffectChance = 0.05f;
@@ -75,7 +75,7 @@ public class MekBlocks{
                     }
                 }
             }, new DrawLiquidTile(){{
-                drawLiquid = Liquids.nitrogen;
+                drawLiquid = MekLiquids.steam;
                 padding = 5.5f;
             }}, new DrawDefault(), new DrawWarmupRegion());
 
@@ -84,7 +84,7 @@ public class MekBlocks{
                 public void updateTile(){
                     super.updateTile();
                     if (efficiency > 0 && liquids.get(Liquids.water) > 0.01f){
-                        handleLiquid(this, Liquids.nitrogen, 1f * edelta() * optionalEfficiency);
+                        handleLiquid(this, MekLiquids.steam, 1f * edelta() * optionalEfficiency);
                     }
                 }
             };
@@ -96,7 +96,7 @@ public class MekBlocks{
             size = 2;
             liquidCapacity = 120f;
             hasLiquids = true;
-            consumeLiquid(Liquids.nitrogen, 1f);
+            consumeLiquid(MekLiquids.steam, 1f);
 
             powerProduction = 1f;
 
@@ -105,7 +105,7 @@ public class MekBlocks{
             effectChance = 0.07f;
 
             drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(){{
-                drawLiquid = Liquids.nitrogen;
+                drawLiquid = MekLiquids.steam;
                 padding = 1f;
             }}, new DrawRegion("-turbine"){{
                 rotateSpeed = 6f;

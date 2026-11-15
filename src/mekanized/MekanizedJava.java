@@ -10,7 +10,7 @@ public class MekanizedJava extends Mod{
     @Override
     public void loadContent(){
         MekItems.load();
+        MekLiquids.load();
         MekBlocks.load();
     }
-
 }
