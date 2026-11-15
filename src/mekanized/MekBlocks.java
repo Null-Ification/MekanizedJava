@@ -8,6 +8,7 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 import mindustry.world.Block;
+import mindustry.world.blocks.power.ConsumeGenerator;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.consumers.ConsumeItemFlammable;
 import mindustry.world.blocks.distribution.Duct;
@@ -19,7 +20,7 @@ import arc.graphics.Color;
 import static mindustry.type.ItemStack.with;
 
 public class MekBlocks{
-    public static Block ironSmelter, thermalVaporizer;
+    public static Block ironSmelter, thermalVaporizer, smallTurbine;
     public static Duct ironDuct;
     public static Block ironBridge, ironJunction;
 
@@ -54,6 +55,9 @@ public class MekBlocks{
 
             outputLiquid = new LiquidStack(Liquids.nitrogen, 1f);
 
+            updateEffect = Fx.fuelburn;
+            updateEffectChance = 0.05f;
+
             drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(){{
                 drawLiquid = Liquids.water;
                 padding = 5.5f;
@@ -84,6 +88,31 @@ public class MekBlocks{
                     }
                 }
             };
+        }};
+
+        smallTurbine = new ConsumeGenerator("small-turbine") {{
+            requirements(Category.power, with(MekItems.iron, 25, Items.copper, 10));
+
+            size = 2;
+            liquidCapacity = 120f;
+            hasLiquids = true;
+            consumeLiquid(Liquids.nitrogen, 1f);
+
+            powerProduction = 1f;
+
+            generateEffect= Fx.heatReactorSmoke;
+            generateEffectRange = 0.1f;
+            effectChance = 0.07f;
+
+            drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(){{
+                drawLiquid = Liquids.nitrogen;
+                padding = 1f;
+            }}, new DrawRegion("-turbine"){{
+                rotateSpeed = 6f;
+            }}, new DrawRegion("-turbine"){{
+                rotateSpeed = -6f;
+                rotation = 45f;
+            }}, new DrawDefault(), new DrawRegion("-cap"));
         }};
 
         ironDuct = new Duct("iron-duct") {{
