@@ -1,5 +1,7 @@
 package mekanized.content;
 
+import mekanized.content.blocks.MekGenericCrafter;
+
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
@@ -15,6 +17,7 @@ import mindustry.world.blocks.distribution.Duct;
 import mindustry.world.blocks.distribution.DuctBridge;
 import mindustry.world.blocks.distribution.DuctJunction;
 import mindustry.world.draw.*;
+
 import arc.graphics.Color;
 
 import static mindustry.type.ItemStack.with;
@@ -26,7 +29,7 @@ public class MekBlocks{
     public static DuctJunction ironJunction;
 
     public static void load(){
-        ironSmelter = new GenericCrafter("iron-smelter"){{
+        ironSmelter = new MekGenericCrafter("iron-smelter"){{
             requirements(Category.crafting, with(Items.copper, 30, Items.lead, 25));
 
             size = 2;
@@ -44,7 +47,7 @@ public class MekBlocks{
             updateEffectChance = 0.05f;
         }};
 
-        thermalVaporizer = new GenericCrafter("thermal-vaporizer"){{
+        thermalVaporizer = new MekGenericCrafter("thermal-vaporizer"){{
             requirements(Category.crafting, with(Items.copper, 35, MekItems.iron, 75));
 
             size = 3;
