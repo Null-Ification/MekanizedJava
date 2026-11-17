@@ -20,7 +20,6 @@ logs/
 /tests/build/
 /server/build/
 /test_files/
-/annotations/build/
 /desktop-sdl/build/
 desktop-sdl/build/
 /android/assets/mindustry-maps/
@@ -47,7 +46,7 @@ hs_err_pid*
 crash-report-*
 replay_pid*
 
-## Robovm
+## RoboVM
 /ios/robovm-build/
 
 ## GWT
@@ -59,7 +58,7 @@ gwt-unitCache/
 www-test/
 .gwt-tmp/
 
-## Android Studio and Intellij and Android in general
+## Android Studio and IntelliJ and Android in general
 /android/libs/armeabi/
 /android/libs/armeabi-v7a/
 /android/libs/arm64-v8a/
@@ -143,13 +142,6 @@ nb-configuration.xml
 /local.properties
 .gradle/
 gradle-app.setting
-/build/
-/android/build/
-/core/build/
-/desktop/build/
-/html/build/
-/ios/build/
-/ios-moe/build/
 
 ## OS Specific
 .DS_Store
