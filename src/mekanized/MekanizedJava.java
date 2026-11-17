@@ -1,5 +1,8 @@
 package mekanized;
 
+import mekanized.content.MekItems;
+import mekanized.content.MekLiquids;
+import mekanized.content.MekBlocks;
 import mindustry.mod.*;
 
 public class MekanizedJava extends Mod{

@@ -6,7 +6,7 @@
     "subtitle": "Yet another mod. Can we finish this?",
     "description": "A new industrial world. Hopefully a cure for my lazy passion.\nNow in Java because HJSON isn't that versatile.",
     "version": "0.0.1",
-    "minGameVersion": 160.7,
+    "minGameVersion": 160,
     "java": true,
     "repo": "Null-Ification/MekanizedJava"
 }

@@ -1,4 +1,4 @@
-package mekanized;
+package mekanized.content;
 
 import arc.graphics.Color;
 import mindustry.type.Item;

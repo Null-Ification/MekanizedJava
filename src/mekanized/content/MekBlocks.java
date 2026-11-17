@@ -1,4 +1,4 @@
-package mekanized;
+package mekanized.content;
 
 import mindustry.content.Fx;
 import mindustry.content.Items;
@@ -22,7 +22,8 @@ import static mindustry.type.ItemStack.with;
 public class MekBlocks{
     public static Block ironSmelter, thermalVaporizer, smallTurbine;
     public static Duct ironDuct;
-    public static Block ironBridge, ironJunction;
+    public static DuctBridge ironBridge;
+    public static DuctJunction ironJunction;
 
     public static void load(){
         ironSmelter = new GenericCrafter("iron-smelter"){{
