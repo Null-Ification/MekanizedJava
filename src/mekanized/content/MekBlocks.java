@@ -1,13 +1,13 @@
 package mekanized.content;
 
 import arc.graphics.Color;
-import mekanized.content.blocks.MekCustomRecipe;
 import mekanized.content.blocks.MekGenericCrafter;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
 import mindustry.gen.Building;
 import mindustry.type.Category;
+import mindustry.type.Item;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 import mindustry.world.Block;
@@ -33,32 +33,34 @@ public class MekBlocks {
             requirements(Category.crafting, with(MekItems.stone, 50));
 
             size = 2;
-            craftTime = 60f;
+            health = 100;
             buildTime = 60f;
 
-            recipes.add(
-                    new MekCustomRecipe() {{
-                        inputs = ItemStack.with(MekItems.rawIron, 1, Items.coal, 1);
-                        output = new ItemStack(MekItems.iron, 1);
-                    }}
-            );
-            recipes.add(
-                    new MekCustomRecipe() {{
-                        inputs = ItemStack.with(MekItems.rawCopper, 1, Items.coal, 1);
-                        output = new ItemStack(Items.copper, 1);
-                    }}
-            );
-
-            drawer = new DrawMulti(
-                    new DrawDefault(),
-                    new DrawGlowRegion() {{
-                        color = Color.valueOf("e68569");
-                    }}
+            recipes.addAll(
+                    new CrafterRecipe(
+                            "Iron",
+                            60f,
+                            ItemStack.with(MekItems.rawIron, 1, Items.coal, 1),
+                            ItemStack.with(MekItems.iron, 1)
+                    ),
+                    new CrafterRecipe(
+                            "Copper",
+                            60f,
+                            ItemStack.with(MekItems.rawCopper, 1, Items.coal, 1),
+                            ItemStack.with(Items.copper, 1)
+                    )
             );
 
-            craftEffect = Fx.pulverize;
-            // updateEffect = Fx.coalSmeltsmoke;
-            // updateEffectChance = 0.05f;
+//            drawer = new DrawMulti(
+//                    new DrawDefault(),
+//                    new DrawGlowRegion() {{
+//                        color = Color.valueOf("e68569");
+//                    }}
+//            );
+//
+//            craftEffect = Fx.pulverize;
+//            updateEffect = Fx.coalSmeltsmoke;
+//            updateEffectChance = 0.05f;
         }};
 
         thermalVaporizer = new GenericCrafter("thermal-vaporizer") {{
@@ -110,7 +112,7 @@ public class MekBlocks {
                     }
                 }
                 // handleLiquid? isn't this forcefully adding steam on top of outputLiquid?
-                // Heard that this may break the game, but I don't know how. It works fine for me, so I guess it's fine.
+                // Heard that this may break the game.
             };
         }};
 
@@ -140,22 +142,39 @@ public class MekBlocks {
             }}, new DrawDefault(), new DrawRegion("-cap"));
         }};
 
-        infuser = new GenericCrafter("infuser") {{
+        infuser = new MekGenericCrafter("infuser") {{
             //TODO: Resprite and rebalance. Also, add a custom Crafter for this, because it needs to have a custom recipe.
             requirements(Category.crafting, with(MekItems.iron, 50, Items.silicon, 25));
 
             size = 3;
-            craftTime = 120f;
-            outputItem = new ItemStack(MekItems.enrichedIron, 1);
+            liquidCapacity = 120f;
 
-            consumeItems(with(MekItems.iron, 1, Items.coal, 1)); // also need custom recipe, but how?
+            recipes.addAll(
+                    new CrafterRecipe(
+                            "Enriched Iron",
+                            120f,
+                            ItemStack.with(MekItems.iron, 1, Items.coal, 1),
+                            ItemStack.with(MekItems.enrichedIron, 1),
+                            LiquidStack.with(Liquids.oil, 1f)
+                    ),
+                    new CrafterRecipe(
+                            "Arc Smelt",
+                            40f,
+                            10f, // requires 10 heat
+                            ItemStack.with(MekItems.iron, 1),
+                            ItemStack.with(Items.surgeAlloy, 1),
+                            LiquidStack.empty
+                    )
+            ); // also need custom recipe, but how?
+
+            consumeLiquid(MekLiquids.steam, 1f);
+            consumePower(1.5f);
             /*
              * iron + coal(turned into carbon or whatever) = enriched iron;
              * enriched iron -> smelter up there to make steel.
              * Osmium- Wait wrong Crafter block. should be in processor manufacturing block thingmasilly.
              */
         }};
-
 
         //TODO: Resprite. Add more distribution: sorter, flow gates, unloader, ect.
         ironDuct = new Duct("iron-duct") {{
