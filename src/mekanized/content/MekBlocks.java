@@ -1,14 +1,11 @@
 package mekanized.content;
 
 import arc.graphics.Color;
-import mekanized.content.blocks.MekGenericCrafter;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
 import mindustry.gen.Building;
 import mindustry.type.Category;
-import mindustry.type.Item;
-import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.distribution.Duct;
@@ -22,47 +19,12 @@ import mindustry.world.draw.*;
 import static mindustry.type.ItemStack.with;
 
 public class MekBlocks {
-    public static Block ironSmelter, infuser, thermalVaporizer, smallTurbine;
+    public static Block infuser, thermalVaporizer, smallTurbine;
     public static Duct ironDuct;
     public static DuctBridge ironBridge;
     public static DuctJunction ironJunction;
 
     public static void load() {
-        ironSmelter = new MekGenericCrafter("iron-smelter") {{
-            //TODO: Add a custom Crafter for this.
-            requirements(Category.crafting, with(MekItems.stone, 50));
-
-            size = 2;
-            health = 100;
-            buildTime = 60f;
-
-            recipes.addAll(
-                    new CrafterRecipe(
-                            "Iron",
-                            60f,
-                            ItemStack.with(MekItems.rawIron, 1, Items.coal, 1),
-                            ItemStack.with(MekItems.iron, 1)
-                    ),
-                    new CrafterRecipe(
-                            "Copper",
-                            60f,
-                            ItemStack.with(MekItems.rawCopper, 1, Items.coal, 1),
-                            ItemStack.with(Items.copper, 1)
-                    )
-            );
-
-//            drawer = new DrawMulti(
-//                    new DrawDefault(),
-//                    new DrawGlowRegion() {{
-//                        color = Color.valueOf("e68569");
-//                    }}
-//            );
-//
-//            craftEffect = Fx.pulverize;
-//            updateEffect = Fx.coalSmeltsmoke;
-//            updateEffectChance = 0.05f;
-        }};
-
         thermalVaporizer = new GenericCrafter("thermal-vaporizer") {{
             //TODO: Down there + resprite.
             requirements(Category.crafting, with(Items.copper, 35, MekItems.iron, 75));
@@ -140,40 +102,6 @@ public class MekBlocks {
                 rotateSpeed = -6f;
                 rotation = 45f;
             }}, new DrawDefault(), new DrawRegion("-cap"));
-        }};
-
-        infuser = new MekGenericCrafter("infuser") {{
-            //TODO: Resprite and rebalance. Also, add a custom Crafter for this, because it needs to have a custom recipe.
-            requirements(Category.crafting, with(MekItems.iron, 50, Items.silicon, 25));
-
-            size = 3;
-            liquidCapacity = 120f;
-
-            recipes.addAll(
-                    new CrafterRecipe(
-                            "Enriched Iron",
-                            120f,
-                            ItemStack.with(MekItems.iron, 1, Items.coal, 1),
-                            ItemStack.with(MekItems.enrichedIron, 1),
-                            LiquidStack.with(Liquids.oil, 1f)
-                    ),
-                    new CrafterRecipe(
-                            "Arc Smelt",
-                            40f,
-                            10f, // requires 10 heat
-                            ItemStack.with(MekItems.iron, 1),
-                            ItemStack.with(Items.surgeAlloy, 1),
-                            LiquidStack.empty
-                    )
-            ); // also need custom recipe, but how?
-
-            consumeLiquid(MekLiquids.steam, 1f);
-            consumePower(1.5f);
-            /*
-             * iron + coal(turned into carbon or whatever) = enriched iron;
-             * enriched iron -> smelter up there to make steel.
-             * Osmium- Wait wrong Crafter block. should be in processor manufacturing block thingmasilly.
-             */
         }};
 
         //TODO: Resprite. Add more distribution: sorter, flow gates, unloader, ect.

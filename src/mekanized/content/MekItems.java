@@ -14,11 +14,6 @@ public class MekItems {
             cost = 0.5f;
         }};
 
-        rawCopper = new Item("raw-copper", Color.valueOf("a66d45")) {{
-            hardness = 1;
-            cost = 0.6f;
-        }};
-
         iron = new Item("iron", Color.valueOf("b5b5b5")) {{
             hardness = 1;
             cost = 0.8f;
@@ -27,6 +22,11 @@ public class MekItems {
         enrichedIron = new Item("enriched-iron", Color.valueOf("e6e6e6")) {{
             hardness = 2;
             cost = 1.5f;
+        }};
+
+        rawCopper = new Item("raw-copper", Color.valueOf("a66d45")) {{
+            hardness = 1;
+            cost = 0.6f;
         }};
 
         stone = new Item("stone", Color.valueOf("7d7c70")) {{

@@ -3,6 +3,7 @@ package mekanized;
 import mekanized.content.MekItems;
 import mekanized.content.MekLiquids;
 import mekanized.content.MekBlocks;
+import mekanized.content.blocks.MekCrafterBlock;
 import mindustry.mod.*;
 
 public class MekanizedJava extends Mod{
@@ -15,5 +16,6 @@ public class MekanizedJava extends Mod{
         MekItems.load();
         MekLiquids.load();
         MekBlocks.load();
+        MekCrafterBlock.load();
     }
 }
